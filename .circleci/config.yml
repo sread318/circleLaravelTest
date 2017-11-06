@@ -49,3 +49,15 @@ jobs:
       - store_artifacts:
           path: test-results.xml
           prefix: tests
+          
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
