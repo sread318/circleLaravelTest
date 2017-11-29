@@ -55,9 +55,12 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test:
-          requires:
-            - build
+    scheduled-workflow:
+      triggers:
+        - schedule:
+          cron: "0 14 * * *"
           filters:
             branches:
               only: master
+      jobs:
+        - build
