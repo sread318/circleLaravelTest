@@ -47,7 +47,7 @@ jobs:
       # run tests!
       - run: vendor/bin/phpunit
       - store_test_results:
-          path: /tmp/test-results
+          path: /tmp/test-results.xml
       - store_artifacts:
           path: test-results.xml
           prefix: tests
