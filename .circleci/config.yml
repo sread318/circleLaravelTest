@@ -48,11 +48,10 @@ jobs:
       - run: vendor/bin/phpunit
       - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
       - phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
-      - mkdir /test-results/
       - store_test_results:
-          path: /test-results/test-results.xml
+          path: ~/test-results/results.xml
       - store_artifacts:
-          path: /test-results/test-results.xml
+          path: ~/test-results/artifacts.xml
           prefix: tests
           
 # workflows:
