@@ -46,21 +46,23 @@ jobs:
       
       # run tests!
       - run: vendor/bin/phpunit
+      - store_test_results:
+          path: /tmp/test-results
       - store_artifacts:
           path: test-results.xml
           prefix: tests
           
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-    scheduled-workflow:
-      triggers:
-        - schedule:
-          cron: "0 14 * * *"
-          filters:
-            branches:
-              only: master
-      jobs:
-        - build
+# workflows:
+#  version: 2
+#  build_and_test:
+#    jobs:
+#      - build
+#    scheduled-workflow:
+#      triggers:
+#        - schedule:
+#          cron: "0 14 * * *"
+#          filters:
+#            branches:
+#              only: master
+#      jobs:
+#        - build
