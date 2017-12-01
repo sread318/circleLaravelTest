@@ -50,7 +50,8 @@ jobs:
         name: store phpunit tests
         command: |
           mkdir -p $CIRCLE_TEST_REPORTS/phpunit
-          . phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
+        command: |
+          phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
       - store_artifacts:
           path: test-reports/
           destination: tr1
