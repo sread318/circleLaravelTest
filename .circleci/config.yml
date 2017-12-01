@@ -46,12 +46,6 @@ jobs:
       
       # run tests!
       - run: vendor/bin/phpunit
-      - run:
-        name: store phpunit tests
-        command: |
-          mkdir -p $CIRCLE_TEST_REPORTS/phpunit
-        command: |
-          phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
       - store_artifacts:
           path: test-reports/
           destination: tr1
