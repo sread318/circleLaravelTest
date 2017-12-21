@@ -20,6 +20,7 @@ jobs:
       - checkout
       - run: sudo apt install -y libsqlite3-dev
       - run: sudo composer self-update
+      - run: mkdir test-reports/
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -34,7 +35,11 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run: echo "hello world"
-      - run: mkdir test-reports/
+    test:
+      override:
+       - mkdir -p $CIRCLE_TEST_REPORTS/phpunit
+       - phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
+
       
   # test:
   #   docker:
@@ -51,7 +56,7 @@ jobs:
           path: test-reports/
           destination: tr1
       - store_test_results:
-          path: test-reports/
+          path: test-reports/junit
 
           
 # workflows:
