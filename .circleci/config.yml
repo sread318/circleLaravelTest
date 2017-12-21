@@ -34,8 +34,8 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
       - run: echo "hello world"
-      - run: mkdir -p $CIRCLE_TEST_REPORTS/phpunit
-      - run: phpunit --log-junit $CIRCLE_TEST_REPORTS/phpunit/junit.xml tests
+      - run: mkdir -p test-reports/phpunit
+      - run: phpunit --log-junit test-reports/phpunit/junit.xml tests
 
       
   # test:
