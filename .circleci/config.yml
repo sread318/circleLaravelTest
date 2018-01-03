@@ -36,7 +36,13 @@ jobs:
       - run: echo "hello world"
       - run: mkdir -p test-reports/phpunit
       - run: phpunit --log-junit test-reports/phpunit/junit.xml tests
-
+      # run tests!
+      - run: vendor/bin/phpunit
+      - store_artifacts:
+          path: test-reports/
+          destination: tr1
+      - store_test_results:
+          path: test-reports/
       
   # test:
   #   docker:
@@ -47,13 +53,7 @@ jobs:
   #     - run: sudo composer self-update
   #     - run: composer install -n --prefer-dist
       
-      # run tests!
-      - run: vendor/bin/phpunit
-      - store_artifacts:
-          path: test-reports/
-          destination: tr1
-      - store_test_results:
-          path: test-reports/junit
+
 
           
 # workflows:
